@@ -1,6 +1,7 @@
 import { useDispatch } from "react-redux";
 import { openEventModal } from "@/features/eventModal/eventModalSlice";
 import { useOutletContext } from "react-router-dom";
+import { VIEW_TYPE_MONTH, MODAL_TYPE_DISPLAY } from '@/constants';
 
 function Event({ event, overlapCount, eventIndex, groupIndex = 0 }) {
     const dispatch = useDispatch();
@@ -10,13 +11,13 @@ function Event({ event, overlapCount, eventIndex, groupIndex = 0 }) {
         e.stopPropagation();
         dispatch(
             openEventModal({
-                modalType: "display",
+                modalType: MODAL_TYPE_DISPLAY,
                 eventInfo: event,
             })
         );
     };
 
-    if (viewType === "month") {
+    if (viewType === VIEW_TYPE_MONTH) {
         return (
             <div
                 className="bg-blue-400 text-white z-10 p-1 text-xs text-center font-semibold rounded-md mb-1 w-[calc(100%-0.5rem)] overflow-hidden whitespace-nowrap text-ellipsis hover:bg-blue-500 border border-white cursor-pointer"

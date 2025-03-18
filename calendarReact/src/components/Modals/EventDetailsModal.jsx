@@ -1,6 +1,7 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { closeEventModal, deleteEvent, openEventModal } from "@/features/eventModal/eventModalSlice";
+import { MODAL_TYPE_EDIT } from '@/constants';
 
 function EventDetailsModal({ onClose }) {
   const dispatch = useDispatch();
@@ -8,7 +9,7 @@ function EventDetailsModal({ onClose }) {
 
   function onEdit() {
     dispatch(openEventModal({
-        modalType: "edit",
+        modalType: MODAL_TYPE_EDIT,
         eventInfo: {
           eventId: eventModal.eventId,
           eventTitle: eventModal.eventTitle,

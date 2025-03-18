@@ -5,7 +5,7 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useNavigate, useParams, useLocation } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { openEventModal } from "@/features/eventModal/eventModalSlice";
-import { VIEW_TYPE_WEEK, VIEW_TYPE_DAY, VIEW_TYPE_MONTH, MODAL_TYPE_ADD, MODAL_TYPE_EDIT, MODAL_TYPE_DISPLAY } from '@/constants';
+import { VIEW_TYPE_WEEK, VIEW_TYPE_DAY, VIEW_TYPE_MONTH, MODAL_TYPE_ADD } from '@/constants';
 
 
 function Header({ onDateChange, currentDate = new Date() }) {
@@ -51,15 +51,15 @@ function Header({ onDateChange, currentDate = new Date() }) {
   // Navigating to next month,week or day
   const handleNext = () => {
     let newDate = finalDate;
-    if (viewType === "month") {
+    if (viewType === VIEW_TYPE_MONTH) {
       newDate = addMonths(finalDate, 1);
-      navigate(getRoute("month", newDate));
-    } else if (viewType === "week") {
+      navigate(getRoute(VIEW_TYPE_MONTH, newDate));
+    } else if (viewType === VIEW_TYPE_WEEK) {
       newDate = addWeeks(finalDate, 1);
-      navigate(getRoute("week", newDate));
-    } else if (viewType === "day") {
+      navigate(getRoute(VIEW_TYPE_WEEK, newDate));
+    } else if (viewType === VIEW_TYPE_DAY) {
       newDate = addDays(finalDate, 1);
-      navigate(getRoute("day", newDate));
+      navigate(getRoute(VIEW_TYPE_DAY, newDate));
     }
     onDateChange(newDate);
   };
@@ -136,9 +136,9 @@ function Header({ onDateChange, currentDate = new Date() }) {
           className="border border-gray-300 p-2 rounded-full hover:bg-gray-300 cursor-pointer"
           onChange={handleSelect}
         >
-          <option value="month">Month</option>
-          <option value="week">Week</option>
-          <option value="day">Day</option>
+          <option value={VIEW_TYPE_MONTH}>Month</option>
+          <option value={VIEW_TYPE_WEEK}>Week</option>
+          <option value={VIEW_TYPE_DAY}>Day</option>
         </select>
       </div>
     </div>

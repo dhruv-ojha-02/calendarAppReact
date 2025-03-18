@@ -16,9 +16,9 @@ function Layout() {
   const viewType = (() => {
     const pathSegments = location.pathname.split("/");
     switch (pathSegments[1]) {
-      case "week":
+      case VIEW_TYPE_WEEK:
         return VIEW_TYPE_WEEK;
-      case "day":
+      case VIEW_TYPE_DAY:
         return VIEW_TYPE_DAY;
       default:
         return VIEW_TYPE_MONTH;

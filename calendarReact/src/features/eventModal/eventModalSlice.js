@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { MODAL_TYPE_ADD } from '@/constants';
 
 const eventModalSlice = createSlice({
     name: "eventModal",
@@ -10,7 +11,7 @@ const eventModalSlice = createSlice({
         eventEndTime: "",
         eventAttendees: "",
         isModalOpen: false,
-        modalType: "add", //add, edit, details modals
+        modalType: MODAL_TYPE_ADD, //add, edit, details modals
     },
     reducers: {
         openEventModal: (state, action) => {
@@ -64,7 +65,7 @@ const eventModalSlice = createSlice({
             events.push(event);
             localStorage.setItem("events", JSON.stringify(events));
         },
-        editEvent: (state, action) => {
+        editEvent: (action) => {
             let events = localStorage.getItem("events") ?
                 JSON.parse(localStorage.getItem("events")) : [];
             events = events.map((event) =>
@@ -74,7 +75,7 @@ const eventModalSlice = createSlice({
             );
             localStorage.setItem("events", JSON.stringify(events));
         },
-        deleteEvent: (state, action) => {
+        deleteEvent: ( action) => {
             const events = localStorage.getItem("events") ?
                 JSON.parse(localStorage.getItem("events")) : [];
 

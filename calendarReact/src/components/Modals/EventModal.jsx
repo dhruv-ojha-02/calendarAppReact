@@ -1,6 +1,7 @@
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { closeEventModal, editEvent, saveEvent } from "@/features/eventModal/eventModalSlice";
+import { MODAL_TYPE_ADD, MODAL_TYPE_EDIT } from '@/constants';
 
 function EventModal({ onClose }) {
   const eventModal = useSelector((state) => state.eventModal);
@@ -21,7 +22,7 @@ function EventModal({ onClose }) {
   });
 
   function onSubmit(eventData) {
-    if (eventModal.modalType === "edit"){ 
+    if (eventModal.modalType === MODAL_TYPE_EDIT){ 
       dispatch(editEvent({
         eventId: eventModal.eventId,
         updatedData: {
@@ -33,7 +34,7 @@ function EventModal({ onClose }) {
         },
       }))
     }
-    else if (eventModal.modalType === "add") {
+    else if (eventModal.modalType === MODAL_TYPE_ADD) {
       dispatch(saveEvent({
         eventId: Date.now(),
         eventTitle: eventData.title,

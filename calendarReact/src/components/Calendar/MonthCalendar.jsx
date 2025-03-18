@@ -4,6 +4,7 @@ import { useOutletContext, useParams } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { openEventModal } from "@/features/eventModal/eventModalSlice";
 import Event from "@/components/Event/Event";
+import { MODAL_TYPE_ADD } from '@/constants';
 
 function MonthCalendar() {
   const weekdays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
@@ -31,7 +32,7 @@ function MonthCalendar() {
   function handleClick(day) {
     dispatch(
       openEventModal({
-        modalType: "add",
+        modalType: MODAL_TYPE_ADD,
         eventInfo: {
           eventDate: format(day, "yyyy-MM-dd"),
         },

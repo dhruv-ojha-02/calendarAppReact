@@ -5,6 +5,7 @@ import { useParams } from "react-router-dom";
 import { useOutletContext } from "react-router-dom";
 import { openEventModal } from "@/features/eventModal/eventModalSlice";
 import Event from "@/components/Event/Event";
+import { MODAL_TYPE_ADD } from '@/constants';
 
 // Group overlapping events by comparing their start/end times.
 function calculateOverlaps(events) {
@@ -68,7 +69,7 @@ function DayCalendar() {
     const formattedStartTime = hour < 10 ? `0${hour}:00` : `${hour}:00`;
     dispatch(
       openEventModal({
-        modalType: "add",
+        modalType: MODAL_TYPE_ADD,
         eventInfo: {
           eventDate: formattedDate,
           eventStartTime: formattedStartTime,
